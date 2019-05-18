@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" type="text/css" href="./jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="./jquery-easyui/themes/icon.css">
+    <script type="text/javascript" src="./jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="./jquery-easyui/jquery.easyui.min.js"></script>
+    <!--  上面导入的顺序不能变  -->
+    <script type="text/javascript" src="./jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="./JS/index.js"></script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north',split:true" style="height:100px;background-image:url('./image/bgimage.jpg')">
+    <center style="font-size:60px;font-family: 楷体">图书借阅管理系统</center>
+    <center style="font-size:20px;font-family: 楷体">读者端</center>
+</div>
+
+<div data-options="region:'west',title:'选项'" style="width:200px;" id="mywest"></div>
+<div data-options="region:'center'" style="padding:0px;background:#eee;">
+    <div id="mycenter">
+        <div title="欢迎页" closable='true'>
+            <center style="font-size: 60px">欢迎登陆本系统</center>
+        </div>
+    </div>
+</div>
+<div data-options="region:'south',split:true" style="height:50px;">
+    <div style="text-align:center;" class="login-help">
+        <p>图书借阅管理系统</p>
+    </div>
+</div>
+</body>
+</body>
+</html>

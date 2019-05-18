@@ -1,0 +1,9 @@
+{"total":4,
+  "rows":[
+  {"name":"姓名","value":"张三","group":"ID Settings","editor":"text"},
+  {"name":"性别","value":"男","group":"ID Settings","editor":"text"},
+  {"name":"借书数","value":"3","group":"ID Settings","editor":"text"},
+  {"name":"借书证号","value":"100001","group":"ID Settings","editor":""},
+  {"name":"密码","value":"******","group":"ID Settings","editor":"text"},
+  {"name":"确认密码","value":"******","group":"ID Settings","editor":"text"}
+]}

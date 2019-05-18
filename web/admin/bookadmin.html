@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui/themes/icon.css">
+    <script type="text/javascript" src="jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui/jquery.easyui.min.js"></script>
+    <!--  上面导入的顺序不能变  -->
+    <script type="text/javascript" src="jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+
+</head>
+<body>
+
+<table id="boos_table1"></table>
+<div id="tb1">
+    <input id="search"  class="easyui-searchbox" data-options="height:22,menu:'#menu1'"> <!-- 搜索按钮 -->
+    <a id="add-book" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a> <!-- 借阅按钮 -->
+    <a id="reload-book" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true">刷新</a> <!-- 刷新按钮 -->
+    <a id="modify-book" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">修改</a> <!-- 刷新按钮 -->
+</div>
+
+<div id="menu1" style="width: 30px"> <!-- 搜索类型菜单 -->
+    <div data-options="name:'title'">书名</div>
+    <div data-options="name:'author',selected:true">作者</div>
+    <div data-options="name:'publisher'">出版社</div>
+</div>
+
+<div id="add_book_win"> <!--新增图书窗口-->
+    <form id="add_book_win_form" >
+        <center>
+        <!--图书编号 书名 作者 出版社 类别 入馆时间 馆藏数 可借数 8-->
+        <p>图书编号 <input name="book_id"></p>
+        <p>书名     <input name="book_name"></p>
+        <p>作者     <input name="book_author"></p>
+        <p>出版社   <input name="book_publish"></p>
+        <p>类别     <input name="book_categoty"></p>
+        <p>入馆时间 <input type="date" name="book_time"></p>
+        <p>馆藏数   <input name="book_all_amount"></p>
+        <p>可借数   <input name="book_brw_amount"></p>
+        </center>
+    </form>
+</div>
+<div></div>
+<style>
+    #add_book_win_form input{
+        margin-top: 6px;
+        height: 30px;
+        width: 206px;
+    }
+    #add_book_win_form p{
+        font-size: 15px;
+    }
+</style>
+<script type="text/javascript" src="JS/bookadmin.js"></script>
+</body>
+</html>

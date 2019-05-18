@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>useradmin</title>
+    <link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui/themes/icon.css">
+    <script type="text/javascript" src="jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui/jquery.easyui.min.js"></script>
+    <!--  上面导入的顺序不能变  -->
+    <script type="text/javascript" src="jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+<table id="users_table"></table>
+<div id="users-tb">
+    <input id="search-user"  class="easyui-searchbox" data-options="height:22,menu:'#menu'"> <!-- 搜索按钮 -->
+    <a id="new-user-win" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</a> <!-- 借阅按钮 -->
+    <a id="reload-user" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true">刷新</a> <!-- 刷新按钮 -->
+    <a id="edit-user" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">修改</a> <!-- 修改按钮 -->
+    <a id="password-clean" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true">重置密码</a> <!-- 重置按钮 -->
+</div>
+
+<div id="menu" style="width: 30px"> <!-- 搜索类型菜单 -->
+    <div data-options="name:'title'">读者账户</div>
+    <div data-options="name:'author',selected:true">姓名</div>
+</div>
+
+
+<!--新增用户窗口-->
+<div id="add_user_win"> <!--新增图书窗口-->
+    <form id="add_user_win_form" >
+        <center>
+            <p>读者编号 <input name="reader_id"></p>
+            <p>姓名     <input name="reader_name"></p>
+            <p>性别     <input name="reader_sex"></p>
+            <p>可借书数   <input name="reader_can_borrow"></p>
+            <p>借书数量     <input name="reader_borrows"></p>
+        </center>
+    </form>
+</div>
+<script type="text/javascript" src="JS/useradmin.js"></script>
+</body>
+</html>

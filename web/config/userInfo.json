@@ -1,0 +1,16 @@
+[{
+    "id":1,
+    "text":"搜索图书",
+    "attributes":{"url":"search.html"}
+},
+{
+    "id":2,
+    "text":"个人中心",
+    "attributes":{"url":"usercenter.html"}
+},
+{
+    "id":3,
+    "text":"还书处",
+    "attributes":{"url":"rbcenter.html"}
+}
+]

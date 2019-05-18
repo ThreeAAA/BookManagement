@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>图书借阅管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="./jquery-easyui/themes/icon.css">
+    <script type="text/javascript" src="./jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="./jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="./JS/rules.js"></script>
+    <script type="text/javascript">
+        //按回车键自动登录
+        $(document).keyup(function (event) {
+            if (event.keyCode == 13) {
+                sunbmitForm();
+            }
+        });
+        //注册窗口
+        $(function () {
+            $("#win").window({
+                width: 600,
+                height: 500,
+                modal: true,
+                title: "注册",
+                shadow: false
+            });
+            $("#win").window("minimize");
+
+        });
+
+        //通过异步的方式登录
+        function sunbmitForm() {
+            $.post("./login", $("#login_from").serialize() + "&from=login", function (data) {
+                if (data.success) {//成功
+
+                    document.cookie = "reader_id="+$('#username1').val();
+                    window.location.href = "./index" + data.msg + ".html";
+                } else {//失败
+                    $.messager.confirm('登录消息', '账号或密码错误！请重新登录！');
+                }
+            }, "json");
+        }
+
+        //注册内容提交
+        function registeredInfo() {
+            var userid = document.getElementById('userid1').value;
+            var password1 = document.getElementById('password1').value;
+            //验证id规则
+            if (!(userid.length >= 5 && userid.length <= 10 && /^\d+(\.\d+)?$/i.test(userid))) {
+                $.messager.confirm('注册消息', '账号只能输入5-10位纯数字');
+                return null;
+            }
+            //验证密码规则
+            if (5 > password1.length || password1.length > 20 || !/^\w+$/.test(password1)) {
+                $.messager.confirm('注册消息', '密码只能输入数字、字符、下划线');
+                return null;
+            }
+            //验证两密码是否一样
+            if (!(document.getElementById('password1').value == document.getElementById('password2').value)) {
+                $.messager.confirm('注册消息', '密码输入不一致，请重新输入！');
+                return null;
+            }
+            console.log($("#registered_from").serialize() + "&from=register");
+            var msg = $("#registered_from").serialize() + "&from=register";
+            var fun = function (data) {
+                console.log(data);
+                if (data.success) {
+                    console.log(data.success);
+                    $.messager.confirm('注册消息', '注册成功！请重新登录！');
+                } else {
+                    $.messager.confirm('注册消息', data.msg);
+                }
+            };
+            $.post("./login", msg, fun, "json");
+        }
+
+        //生成注册窗口
+        function registeredForm() {
+            $('#win').window('open');
+        }
+
+
+        //限定注册输入内容
+        window.onload = function () {
+            var oIns = document.getElementById('userid1');
+            oIns.onkeydown = function (ev) {
+                var oEvent = ev || event;
+                //只能输入数字
+                if (!((oEvent.keyCode <= 57 && oEvent.keyCode >= 46) || (oEvent.keyCode <= 105 && oEvent.keyCode >= 96) || (oEvent.keyCode == 8))) {
+                    return false;
+                }
+
+            }
+        }
+    </script>
+
+</head>
+<body>
+<section class="container">
+    <div class="login">
+        <h1>用户登录</h1>
+        <form method="post" id="login_from">
+            <p><input type="text" id="username1" name="username" value="" placeholder="账号"></p>
+            <p><input type="password" name="password" value="" placeholder="密码"></p>
+            <p class="submit">
+                <input type="button" value="登录" onclick="javascript:sunbmitForm()">
+                <input type="button" value="注册" onclick="javascript:registeredForm()">
+            </p>
+        </form>
+    </div>
+</section>
+<div id="win">
+    <div>
+        <center>
+            <form id="registered_from">
+                <P>账号<input id="userid1" name="userid" type="text" class="easyui-validatebox" style="width:200px;"
+                            data-options="validType:'idLength[5,10]',required:true,missingMessage:'请输入id，注册后不可更改'"></P>
+                <P>姓名<input name="username" type="text" class="easyui-validatebox" style="width:200px;"
+                            data-options="missingMessage:'请输入真实姓名', required:'required'"></P>
+                <P>性别<select name="usersex" id="cc" class="easyui-combobox" style="width:200px;height:30px">
+                    <option>女</option>
+                    <option>男</option>
+                </select></P>
+                <P>密码<input type="password" class="easyui-validatebox"
+                            data-options="required:'required',missingMessage:'只能输入6-20位数字、字符、下划线',validType:['ver_psd','ver_psd']"
+                            style="width:200px;height:34px;padding:10px" id="password1"></P>
+                <P style="margin-right: 27px;">
+                    确认密码<input name="password" class="easyui-validatebox" type="password"
+                               data-options="required:'required',missingMessage:'请再次输入密码'"
+                               validType="double_psd['#password1']"
+                               style="width:200px;height:34px;padding:10px" id="password2"></P>
+
+                <p class="submit">
+                    <input type="button" value="注册" onclick="javascript:registeredInfo()">
+                </p>
+            </form>
+        </center>
+    </div>
+</div>
+<div style="text-align:center;" class="login-help">
+    <p>图书借阅管理系统</p>
+</div>
+</body>
+</html>

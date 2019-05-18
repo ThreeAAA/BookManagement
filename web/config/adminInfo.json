@@ -1,0 +1,11 @@
+[{
+  "id":1,
+  "text":"图书管理",
+  "attributes":{"url":"./admin/bookadmin.html"}
+},
+  {
+    "id":2,
+    "text":"账户管理",
+    "attributes":{"url":"./admin/useradmin.html"}
+  }
+]
