@@ -37,4 +37,14 @@ public class JSONUnit {
         bookInfo.put("publisher", bookResultSet.getString(4));
         bookInfo.put("category", bookResultSet.getString(5));
     }
+
+    public static JSONDate getReaderJson(ResultSet readerResultSet) throws SQLException{
+        JSONDate readerInfo = new JSONDate();
+        readerInfo.put("id",readerResultSet.getString(1));
+        readerInfo.put("name",readerResultSet.getString(2));
+        readerInfo.put("sex",readerResultSet.getString(3));
+        readerInfo.put("surplus_book",readerResultSet.getString(4));
+        readerInfo.put("loan_book",readerResultSet.getString(5));
+        return readerInfo;
+    }
 }

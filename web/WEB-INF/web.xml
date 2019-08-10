@@ -20,6 +20,14 @@
         <servlet-name>ServletReader</servlet-name>
         <servlet-class>servlet.ServletReader</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>servlet.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/searchServlet</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>

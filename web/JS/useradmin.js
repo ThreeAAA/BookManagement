@@ -81,10 +81,25 @@ $(function () {
         //添加重置密码操作
         var psf_clean_data = "action=cleanPassword&form=userAdmin";
         $.post("./servlet2", psf_clean_data,submitUser,'json');
+    });
+    $('#search-user').searchbox({
+        searcher:search
     })
 
 });
 
 function submitUser(data) {
     $.messager.confirm('消息',data.msg);
+}
+
+function search(value, name) {
+    //输入值，选择值
+    var search_data = "info="+name+"&content="+value;
+    $.post("./searchServlet",search_data,function writeData(datas,status) {
+        if (datas.length<3){
+            datas  = '{"total":1,"rows":[{"id":"查询无结果","title":"","author":"","publisher":"","category":"","setTime":"","totalBook":"","surplus":""}]}'
+        }
+        var json = $.parseJSON(datas); //json字符串转成json对象
+        $('#users_table').datagrid('loadData',json);  //这个方法只接受json对象
+    },"text");
 }

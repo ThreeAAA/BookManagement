@@ -17,6 +17,7 @@ $(function () {
             {field:"totalBook",title:"馆藏数",width:1},
             {field:"surplus",title:"可借数",width:1}
         ]],
+
         url:"./servlet" //数据来源
     });
 
@@ -49,9 +50,25 @@ $(function () {
     $('#reload').bind('click',function () {
         $('#boos_table').datagrid("load");
     });
+    //搜索
+    $('#search').searchbox({
+        searcher:search
+    });
 
 });
 
 function msgWin(data) {
     $.messager.confirm("消息",data.msg);
+}
+//向服务器发送搜索图书的请求
+function search(value, name) {
+    //输入值，选择值
+    var search_data = "info="+name+"&content="+value;
+    $.post("./searchServlet",search_data,function writeData(datas,status) {
+        if (datas.length<3){
+            datas  = '{"total":1,"rows":[{"id":"查询无结果","title":"","author":"","publisher":"","category":"","setTime":"","totalBook":"","surplus":""}]}'
+        }
+        var json = $.parseJSON(datas); //json字符串转成json对象
+        $('#boos_table').datagrid('loadData',json);  //这个方法只接受json对象
+    },"text");
 }

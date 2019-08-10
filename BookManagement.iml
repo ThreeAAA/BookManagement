@@ -23,8 +23,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mysql-connector-java-8.0.15" level="project" />
-    <orderEntry type="library" name="junit4" level="project" />
     <orderEntry type="library" name="tomatlib" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.15 (2)" level="project" />
     <orderEntry type="library" name="junit-4.12" level="project" />

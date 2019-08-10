@@ -1,8 +1,11 @@
 package manage.circulation;
 
+import java.sql.ResultSet;
+
 public interface ISearchDAO {
-    public boolean searchBook(String bookTitle);
-    public boolean searchAuthor(String bookAuthor);
-    public boolean searchPress(String bookPress);
-    public boolean searchCategory(String bookCategory);
+    public ResultSet searchBook(String bookTitle);
+    public ResultSet searchAuthor(String bookAuthor);
+    public ResultSet searchPublisher(String bookPress);
+    public ResultSet searchName(String bookCategory);
+    public ResultSet searchReaderId(String bookCategory);
 }

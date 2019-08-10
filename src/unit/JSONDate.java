@@ -14,6 +14,11 @@ public class JSONDate {
         keyArry[0]="0";
     }
 
+    /**
+     * 添加json数据
+     * @param key
+     * @param value
+     */
     public void put(String key, int value){
         String temp;
         if (json.length()>1){

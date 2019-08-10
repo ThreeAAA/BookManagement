@@ -1,4 +1,5 @@
 $(function () {
+
     var sign = 1;  //标志，用来判断是添加还是修改
 
     $('#boos_table1').datagrid({
@@ -6,6 +7,8 @@ $(function () {
         singleSelect:true,
         rownumbers:true,
         fit:true,
+        toolbar:$('#tb1'),
+        pagination:true,
         columns:[[
             {field:"id",title:"图书编号",width:1},
             {field:"title",title:"书名",width:1},
@@ -16,10 +19,7 @@ $(function () {
             {field:"totalBook",title:"馆藏数",width:1},
             {field:"surplus",title:"可借数",width:1}
         ]],
-        url:'./servlet', //数据来源
-        // url:"config/bookinfo.json", //数据来源
-        toolbar:$('#tb1'),
-        pagination:true
+        url:'./servlet' //数据来源
     });
     // getBookInfo();
     function getname(value,row,index) { //过滤空值，先就这样把
@@ -92,9 +92,23 @@ $(function () {
             $.messager.confirm('提示','请选中某一行再进行修改');
         }
     });
+    //搜索
+    $('#search-input').searchbox({
+        searcher:searchss
+    });
 
 });
-
+function searchss(value, name) {
+    //输入值，选择值
+    var search_data = "info="+name+"&content="+value;
+    $.post("./searchServlet",search_data,function writeData(datas,status) {
+        if (datas.length<3){
+            datas  = '{"total":1,"rows":[{"id":"查询无结果","title":"","author":"","publisher":"","category":"","setTime":"","totalBook":"","surplus":""}]}'
+        }
+        var json = $.parseJSON(datas); //json字符串转成json对象
+        $('#boos_table1').datagrid('loadData',json);  //这个方法只接受json对象
+    },"text");
+}
 function submitBook(data) {
     $.messager.confirm('添加消息',data.msg);
 }
